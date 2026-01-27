@@ -6,7 +6,7 @@
     "material": "16ga Steel",
     "student": "A. Johnson",
     "description": "Custom logo sign cut via CNC plasma. Challenge: achieving clean edges on tight corners. Success: mastered lead/lag technique to prevent bevel cutting.",
-    "img_url": "img/project-1.jpg"
+    "img_url": "img/project-1.png"
   },
   {
     "id": "proj-002",
@@ -15,7 +15,7 @@
     "material": "Aluminum",
     "student": "M. Garcia",
     "description": "Electronics enclosure with sealed corners. Challenge: precision bending to exact angles. Success: zero-rework assembly with custom corner fixtures.",
-    "img_url": "img/project-2.jpg"
+    "img_url": "img/project-2.png"
   },
   {
     "id": "proj-003",
@@ -24,7 +24,7 @@
     "material": "12ga Steel",
     "student": "J. Williams",
     "description": "Heavy-duty bracket for shop equipment. Challenge: threading holes without misalignment. Success: fixture-based drilling ensured perfect symmetry.",
-    "img_url": "img/project-3.jpg"
+    "img_url": "img/project-3.png"
   },
   {
     "id": "proj-004",
@@ -33,7 +33,7 @@
     "material": "14ga Steel",
     "student": "S. Lee",
     "description": "Geometric pattern panel for interior design. Challenge: cutting intricate designs without warping. Success: optimized torch speed and nesting strategy.",
-    "img_url": "img/project-4.jpg"
+    "img_url": "img/project-4.png"
   },
   {
     "id": "proj-005",
@@ -42,6 +42,6 @@
     "material": "18ga Steel",
     "student": "R. Martinez",
     "description": "Picture frame with precision laser etching. Challenge: preventing heat distortion on thin gauge. Success: mastered cooling techniques and material selection.",
-    "img_url": "img/project-5.jpg"
+    "img_url": "img/project-5.png"
   }
 ]
