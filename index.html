@@ -139,7 +139,25 @@
         <!-- Module A: The High-Fidelity Estimator -->
         <section class="mb-12 p-6 border-2 border-black rounded">
             <h2 class="section-title">Module A: The High-Fidelity Estimator</h2>
-            <p class="text-gray-600 mb-6">Real-time calculator using a "Safety-First" coefficient (1.5x markup + $20 base fee)</p>
+            <p class="text-gray-600 mb-6">Enter your desired selling price and material, then see your earnings breakdown</p>
+
+            <!-- Input Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="form-group">
+                    <label class="form-label">Selling Price ($)</label>
+                    <input type="number" id="sellingPrice" class="form-input" value="100" min="0" placeholder="Enter desired selling price">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Material Cost per Sq In</label>
+                    <select id="material" class="form-input">
+                        <option value="12ga_steel">12ga Steel ($0.08/sq in)</option>
+                        <option value="14ga_steel">14ga Steel ($0.07/sq in)</option>
+                        <option value="16ga_steel" selected>16ga Steel ($0.06/sq in)</option>
+                        <option value="18ga_steel">18ga Steel ($0.05/sq in)</option>
+                        <option value="aluminum">Aluminum ($0.25/sq in)</option>
+                    </select>
+                </div>
+            </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div class="form-group">
@@ -152,32 +170,51 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div class="form-group">
-                    <label class="form-label">Material</label>
-                    <select id="material" class="form-input">
-                        <option value="12ga_steel">12ga Steel ($0.08/sq in)</option>
-                        <option value="14ga_steel">14ga Steel ($0.07/sq in)</option>
-                        <option value="16ga_steel" selected>16ga Steel ($0.06/sq in)</option>
-                        <option value="18ga_steel">18ga Steel ($0.05/sq in)</option>
-                        <option value="aluminum">Aluminum ($0.25/sq in)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Finish Type</label>
-                    <select id="finish" class="form-input">
-                        <option value="bare">Bare Metal</option>
-                        <option value="powder">Powder Coat</option>
-                        <option value="paint">Paint</option>
-                        <option value="anodize">Anodize</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label class="form-label">Finish Type</label>
+                <select id="finish" class="form-input">
+                    <option value="bare">Bare Metal</option>
+                    <option value="powder">Powder Coat</option>
+                    <option value="paint">Paint</option>
+                    <option value="anodize">Anodize</option>
+                </select>
             </div>
 
-            <div class="price-display">
-                Maximum Projected Estimate: $<span id="priceOutput">20.00</span>
+            <!-- Results Section -->
+            <div class="space-y-4 mt-8">
+                <div class="price-display">
+                    Selling Price: $<span id="sellingDisplay">100.00</span>
+                </div>
+
+                <div class="border-2 border-black p-6 rounded space-y-3">
+                    <div class="text-sm">
+                        <div class="flex justify-between mb-2 pb-2 border-b border-gray-300">
+                            <span>Cost to Make</span>
+                            <span class="font-bold">$<span id="costDisplay">20.00</span></span>
+                        </div>
+                        <div class="flex justify-between mb-3 pb-3 border-b border-gray-300">
+                            <span>Profit (Selling - Cost)</span>
+                            <span class="font-bold">$<span id="profitDisplay">80.00</span></span>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded border border-gray-300 mb-3">
+                            <div class="flex justify-between mb-1">
+                                <span><strong>→ Your Share (50%)</strong></span>
+                                <span class="text-lg font-bold text-green-700">$<span id="studentShare">40.00</span></span>
+                            </div>
+                            <p class="text-xs text-gray-600 mt-1">You keep half the profit</p>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded border border-gray-300">
+                            <div class="flex justify-between mb-1">
+                                <span><strong>→ School Fund (50%)</strong></span>
+                                <span class="font-bold text-blue-700">$<span id="schoolShare">40.00</span></span>
+                            </div>
+                            <p class="text-xs text-gray-600 mt-1">Supports consumables & equipment</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-xs text-gray-500">Cost formula = ⌈((L × W × Rate) × 1.5) + $20⌉ | Profit splits 50/50 between you and the school fund</p>
             </div>
-            <p class="text-xs text-gray-500 mt-2">Price = ⌈((L × W × Rate) × 1.5) + $20⌉</p>
         </section>
 
         <!-- Module B: The "Mastery" Gallery -->
@@ -241,15 +278,23 @@
         const baseFee = 20.00;
         const safetyCoefficient = 1.5;
 
-        // ===== Module A: Calculator Logic =====
+        // ===== Module A: Calculator Logic (Backwards from Selling Price) =====
         function calculatePrice() {
+            const sellingPrice = parseFloat(document.getElementById('sellingPrice').value) || 0;
             const length = parseFloat(document.getElementById('length').value) || 0;
             const width = parseFloat(document.getElementById('width').value) || 0;
             const material = document.getElementById('material').value;
             const rate = materialRates[material] || 0;
 
-            if (length <= 0 || width <= 0) {
-                document.getElementById('priceOutput').textContent = '20.00';
+            // Update selling price display
+            document.getElementById('sellingDisplay').textContent = sellingPrice.toFixed(2);
+
+            // Calculate cost to make
+            if (length <= 0 || width <= 0 || sellingPrice <= 0) {
+                document.getElementById('costDisplay').textContent = '20.00';
+                document.getElementById('profitDisplay').textContent = '0.00';
+                document.getElementById('studentShare').textContent = '0.00';
+                document.getElementById('schoolShare').textContent = '0.00';
                 document.getElementById('applicationPrice').value = '$20.00';
                 return;
             }
@@ -257,13 +302,24 @@
             const area = length * width;
             const baseCost = area * rate;
             const withSafety = baseCost * safetyCoefficient;
-            const finalPrice = Math.ceil(withSafety + baseFee);
+            const costToMake = Math.ceil(withSafety + baseFee);
 
-            document.getElementById('priceOutput').textContent = finalPrice.toFixed(2);
-            document.getElementById('applicationPrice').value = '$' + finalPrice.toFixed(2);
+            // Calculate profit and splits
+            const profit = sellingPrice - costToMake;
+            const studentEarnings = profit * 0.5;  // Student gets 50% of profit
+            const schoolFund = profit * 0.5;       // School gets 50% of profit
+
+            // Update displays
+            document.getElementById('costDisplay').textContent = costToMake.toFixed(2);
+            document.getElementById('profitDisplay').textContent = profit.toFixed(2);
+            document.getElementById('studentShare').textContent = studentEarnings.toFixed(2);
+            document.getElementById('schoolShare').textContent = schoolFund.toFixed(2);
+            document.getElementById('applicationPrice').value = '$' + costToMake.toFixed(2);
         }
 
         // Attach event listeners for real-time calculation
+        document.getElementById('sellingPrice').addEventListener('keyup', calculatePrice);
+        document.getElementById('sellingPrice').addEventListener('change', calculatePrice);
         document.getElementById('length').addEventListener('keyup', calculatePrice);
         document.getElementById('width').addEventListener('keyup', calculatePrice);
         document.getElementById('length').addEventListener('change', calculatePrice);
