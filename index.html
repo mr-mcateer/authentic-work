@@ -317,35 +317,43 @@
             </div>
         </section>
 
-        <!-- Module C: Stateless Application System -->
+        <!-- Module C: Project Submission -->
         <section class="section-container">
-            <h2 class="section-title">Submit Your Project</h2>
-            <p class="section-subtitle">Tell us about your project and we'll get back to you with next steps</p>
+            <h2 class="section-title">Request Quote</h2>
+            <p class="section-subtitle">Submit your project details. Your quote will be sent to your teacher for approval.</p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div class="form-group">
-                    <label class="form-label">Your Instagram Handle</label>
-                    <input type="text" id="instagramHandle" class="form-input" placeholder="@yourname">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Your Email (for response)</label>
-                    <input type="email" id="email" class="form-input" placeholder="student@school.edu">
-                </div>
+            <div class="form-group">
+                <label class="form-label">Your Name</label>
+                <input type="text" id="studentName" class="form-input" placeholder="First & Last Name">
             </div>
 
             <div class="form-group">
                 <label class="form-label">Project Description</label>
-                <textarea id="projectDescription" class="form-input" rows="4" placeholder="Describe your project, materials, and fabrication goals..."></textarea>
+                <textarea id="projectDescription" class="form-input" rows="4" placeholder="What are you building? Describe the design, fabrication challenges, and why you're excited about this project."></textarea>
             </div>
 
             <div class="form-group">
-                <label class="form-label">Estimated Project Cost</label>
-                <input type="text" id="applicationPrice" class="form-input" value="$20.00" readonly>
-                <p class="text-xs text-gray-500 mt-2">This value is pulled from the estimator above</p>
+                <label class="form-label">Design Summary</label>
+                <div style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1.25rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem;">Dimensions</p>
+                            <p style="font-weight: 600; font-size: 1rem; color: #1f2937;"><span id="summaryLength">12</span>" × <span id="summaryWidth">12</span>"</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem;">Material</p>
+                            <p style="font-weight: 600; font-size: 1rem; color: #1f2937;"><span id="summaryMaterial">16ga Steel</span></p>
+                        </div>
+                    </div>
+                    <div style="border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+                        <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem;">Production Cost</p>
+                        <p style="font-weight: 600; font-size: 1.125rem; color: #1f2937;">$<span id="summaryCost">20.00</span></p>
+                    </div>
+                </div>
             </div>
 
-            <button class="button-primary" onclick="submitApplication()">Submit Application via Email</button>
-            <p class="text-xs text-gray-500 mt-3">Your email client will open with the application details. Review and send to submit.</p>
+            <button class="button-primary" onclick="submitApplication()" style="width: 100%; text-align: center; justify-content: center;">Send Quote Request</button>
+            <p class="text-xs text-gray-500 mt-4" style="text-align: center;">A quote request will be sent to your teacher from your school email.</p>
         </section>
 
         <!-- Footer -->
@@ -385,7 +393,7 @@
                 document.getElementById('profitDisplay').textContent = '0.00';
                 document.getElementById('studentShare').textContent = '0.00';
                 document.getElementById('schoolShare').textContent = '0.00';
-                document.getElementById('applicationPrice').value = '$20.00';
+                document.getElementById('summaryCost').textContent = '20.00';
                 return;
             }
 
@@ -404,7 +412,15 @@
             document.getElementById('profitDisplay').textContent = profit.toFixed(2);
             document.getElementById('studentShare').textContent = studentEarnings.toFixed(2);
             document.getElementById('schoolShare').textContent = schoolFund.toFixed(2);
-            document.getElementById('applicationPrice').value = '$' + costToMake.toFixed(2);
+
+            // Update submission summary
+            document.getElementById('summaryLength').textContent = length;
+            document.getElementById('summaryWidth').textContent = width;
+            document.getElementById('summaryCost').textContent = costToMake.toFixed(2);
+
+            // Update material display
+            const materialLabel = document.getElementById('material').options[document.getElementById('material').selectedIndex].text;
+            document.getElementById('summaryMaterial').textContent = materialLabel;
         }
 
         // Attach event listeners for real-time calculation
@@ -469,38 +485,42 @@
 
         // ===== Module C: Application Submission =====
         function submitApplication() {
-            const instagram = document.getElementById('instagramHandle').value.trim();
-            const email = document.getElementById('email').value.trim();
+            const studentName = document.getElementById('studentName').value.trim();
             const description = document.getElementById('projectDescription').value.trim();
-            const price = document.getElementById('applicationPrice').value;
             const length = document.getElementById('length').value;
             const width = document.getElementById('width').value;
             const material = document.getElementById('material').options[document.getElementById('material').selectedIndex].text;
+            const cost = document.getElementById('summaryCost').textContent;
 
             // Validation
+            if (!studentName) {
+                alert('Please enter your name');
+                return;
+            }
             if (length <= 0 || width <= 0) {
                 alert('Please enter valid dimensions (greater than 0)');
                 return;
             }
             if (!description) {
-                alert('Please provide a project description');
+                alert('Please describe your project');
                 return;
             }
 
-            const subject = `Authentic Work Application - ${instagram || 'Student'}`;
-            const body = `PROJECT APPLICATION\n\n` +
-                        `Instagram Handle: ${instagram || 'Not provided'}\n` +
-                        `Email: ${email || 'Not provided'}\n\n` +
+            const subject = `[Authentic Work] Project Quote Request - ${studentName}`;
+            const body = `PROJECT QUOTE REQUEST\n\n` +
+                        `Student Name: ${studentName}\n\n` +
                         `PROJECT DETAILS\n` +
-                        `===============\n` +
+                        `───────────────────────\n` +
                         `Description:\n${description}\n\n` +
-                        `Dimensions: ${length}" × ${width}"\n` +
-                        `Material: ${material}\n` +
-                        `Maximum Projected Estimate: ${price}\n\n` +
-                        `---\n` +
-                        `This application was generated by the Authentic Work Portal v1.0\n` +
-                        `Please review the details above and confirm your submission.`;
+                        `Specifications:\n` +
+                        `  Dimensions: ${length}" × ${width}"\n` +
+                        `  Material: ${material}\n` +
+                        `  Production Cost: $${cost}\n\n` +
+                        `───────────────────────\n\n` +
+                        `To approve or request changes, reply to this email.\n\n` +
+                        `Generated by Authentic Work Portal v1.0`;
 
+            // Create mailto link to teacher
             const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             window.location.href = mailtoLink;
         }
