@@ -41,12 +41,12 @@
   },
   {
     "id": "proj-005",
-    "title": "Custom Fabrication - Misc",
-    "technique": "Custom Fabrication",
+    "title": "Steel Shelf Unit - Multi-Piece",
+    "technique": "CNC Plasma Cutting + TIG Welding",
     "dimensions": "16x20",
-    "material": "18ga Steel",
+    "material": "14ga Steel",
     "student": "R. Martinez",
-    "description": "Custom metal project combining cutting and welding. Challenge: multi-step assembly process. Success: delivered on-time with superior fit and finish.",
+    "description": "Multi-shelf storage unit combining CNC plasma cut components with TIG welding. Challenge: aligning multiple components for flush assembly. Success: delivered ready-to-ship with engineering approval.",
     "img_url": "img/project-5.png"
   }
 ]
