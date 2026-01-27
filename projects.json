@@ -2,6 +2,7 @@
   {
     "id": "proj-001",
     "title": "CNC Plasma Sign - Custom Logo",
+    "technique": "CNC Plasma Cutting",
     "dimensions": "24x36",
     "material": "16ga Steel",
     "student": "A. Johnson",
@@ -10,38 +11,42 @@
   },
   {
     "id": "proj-002",
-    "title": "Aluminum Enclosure Box",
+    "title": "Metal Bracket - CNC Routed",
+    "technique": "CNC Routing",
     "dimensions": "12x12",
     "material": "Aluminum",
     "student": "M. Garcia",
-    "description": "Electronics enclosure with sealed corners. Challenge: precision bending to exact angles. Success: zero-rework assembly with custom corner fixtures.",
+    "description": "Precision aluminum bracket with routed edges. Challenge: achieving exact tolerances. Success: zero-rework assembly with custom corner fixtures.",
     "img_url": "img/project-2.png"
   },
   {
     "id": "proj-003",
-    "title": "Steel Bracket Assembly",
+    "title": "Steel Stand - TIG Welded",
+    "technique": "TIG Welding",
     "dimensions": "8x10",
     "material": "12ga Steel",
     "student": "J. Williams",
-    "description": "Heavy-duty bracket for shop equipment. Challenge: threading holes without misalignment. Success: fixture-based drilling ensured perfect symmetry.",
+    "description": "Heavy-duty welded stand for shop equipment. Challenge: perfect weld penetration without warping. Success: structural engineer inspection passed on first attempt.",
     "img_url": "img/project-3.png"
   },
   {
     "id": "proj-004",
-    "title": "Decorative Wall Panel",
+    "title": "Decorative Wall Panel - CNC Cut",
+    "technique": "CNC Plasma Cutting",
     "dimensions": "18x24",
     "material": "14ga Steel",
     "student": "S. Lee",
-    "description": "Geometric pattern panel for interior design. Challenge: cutting intricate designs without warping. Success: optimized torch speed and nesting strategy.",
+    "description": "Geometric pattern panel cut via CNC plasma. Challenge: cutting intricate designs without warping. Success: optimized torch speed and nesting strategy.",
     "img_url": "img/project-4.png"
   },
   {
     "id": "proj-005",
-    "title": "Custom Frame - Laser Cut",
+    "title": "Custom Fabrication - Misc",
+    "technique": "Custom Fabrication",
     "dimensions": "16x20",
     "material": "18ga Steel",
     "student": "R. Martinez",
-    "description": "Picture frame with precision laser etching. Challenge: preventing heat distortion on thin gauge. Success: mastered cooling techniques and material selection.",
+    "description": "Custom metal project combining cutting and welding. Challenge: multi-step assembly process. Success: delivered on-time with superior fit and finish.",
     "img_url": "img/project-5.png"
   }
 ]
