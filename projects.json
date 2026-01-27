@@ -39,14 +39,4 @@
     "description": "Geometric pattern panel cut via CNC plasma. Challenge: cutting intricate designs without warping. Success: optimized torch speed and nesting strategy.",
     "img_url": "img/project-4.png"
   },
-  {
-    "id": "proj-005",
-    "title": "Steel Shelf Unit - Multi-Piece",
-    "technique": "CNC Plasma Cutting + TIG Welding",
-    "dimensions": "16x20",
-    "material": "14ga Steel",
-    "student": "R. Martinez",
-    "description": "Multi-shelf storage unit combining CNC plasma cut components with TIG welding. Challenge: aligning multiple components for flush assembly. Success: delivered ready-to-ship with engineering approval.",
-    "img_url": "img/project-5.png"
-  }
 ]
