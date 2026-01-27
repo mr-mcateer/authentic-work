@@ -974,7 +974,7 @@
         // ===== GALLERY LOADER =====
         async function loadGallery() {
             try {
-                const response = await fetch('projects.json');
+                const response = await fetch('projects.json?v=' + new Date().getTime());
                 const projects = await response.json();
                 const container = document.getElementById('galleryContainer');
                 container.innerHTML = '';
