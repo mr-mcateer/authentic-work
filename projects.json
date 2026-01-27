@@ -1,0 +1,47 @@
+[
+  {
+    "id": "proj-001",
+    "title": "CNC Plasma Sign - Custom Logo",
+    "dimensions": "24x36",
+    "material": "16ga Steel",
+    "student": "A. Johnson",
+    "description": "Custom logo sign cut via CNC plasma. Challenge: achieving clean edges on tight corners. Success: mastered lead/lag technique to prevent bevel cutting.",
+    "img_url": "img/project-1.jpg"
+  },
+  {
+    "id": "proj-002",
+    "title": "Aluminum Enclosure Box",
+    "dimensions": "12x12",
+    "material": "Aluminum",
+    "student": "M. Garcia",
+    "description": "Electronics enclosure with sealed corners. Challenge: precision bending to exact angles. Success: zero-rework assembly with custom corner fixtures.",
+    "img_url": "img/project-2.jpg"
+  },
+  {
+    "id": "proj-003",
+    "title": "Steel Bracket Assembly",
+    "dimensions": "8x10",
+    "material": "12ga Steel",
+    "student": "J. Williams",
+    "description": "Heavy-duty bracket for shop equipment. Challenge: threading holes without misalignment. Success: fixture-based drilling ensured perfect symmetry.",
+    "img_url": "img/project-3.jpg"
+  },
+  {
+    "id": "proj-004",
+    "title": "Decorative Wall Panel",
+    "dimensions": "18x24",
+    "material": "14ga Steel",
+    "student": "S. Lee",
+    "description": "Geometric pattern panel for interior design. Challenge: cutting intricate designs without warping. Success: optimized torch speed and nesting strategy.",
+    "img_url": "img/project-4.jpg"
+  },
+  {
+    "id": "proj-005",
+    "title": "Custom Frame - Laser Cut",
+    "dimensions": "16x20",
+    "material": "18ga Steel",
+    "student": "R. Martinez",
+    "description": "Picture frame with precision laser etching. Challenge: preventing heat distortion on thin gauge. Success: mastered cooling techniques and material selection.",
+    "img_url": "img/project-5.jpg"
+  }
+]

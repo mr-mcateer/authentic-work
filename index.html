@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentic Work Portal v1.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Roboto Mono', monospace;
+        }
+        body {
+            background-color: #FFFFFF;
+        }
+        .section-title {
+            color: #000000;
+            font-weight: 700;
+            font-size: 1.875rem;
+            margin-bottom: 1.5rem;
+        }
+        .price-display {
+            background-color: #F97316;
+            color: #FFFFFF;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        .button-primary {
+            background-color: #F97316;
+            color: #FFFFFF;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button-primary:hover {
+            background-color: #EA6317;
+        }
+        .button-secondary {
+            background-color: #F8FAFC;
+            color: #000000;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 700;
+            border: 1px solid #000000;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button-secondary:hover {
+            background-color: #E2E8F0;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .gallery-card {
+            border: 2px solid #000000;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #F8FAFC;
+        }
+        .gallery-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .gallery-card-content {
+            padding: 1rem;
+        }
+        .gallery-card h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .gallery-card p {
+            font-size: 0.875rem;
+            color: #475569;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        .gallery-card-meta {
+            font-size: 0.75rem;
+            color: #64748B;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #000000;
+            border-radius: 0.375rem;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.875rem;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #F97316;
+        }
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .footer-legal {
+            background-color: #F8FAFC;
+            border-top: 2px solid #000000;
+            padding: 2rem;
+            margin-top: 3rem;
+            font-size: 0.75rem;
+            color: #64748B;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="mb-12">
+            <h1 class="text-4xl font-bold text-black mb-2">Authentic Work Portal v1.0</h1>
+            <p class="text-gray-600">High-Fidelity Sheet Metal Estimator & Project Gallery</p>
+        </div>
+
+        <!-- Module A: The High-Fidelity Estimator -->
+        <section class="mb-12 p-6 border-2 border-black rounded">
+            <h2 class="section-title">Module A: The High-Fidelity Estimator</h2>
+            <p class="text-gray-600 mb-6">Real-time calculator using a "Safety-First" coefficient (1.5x markup + $20 base fee)</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="form-group">
+                    <label class="form-label">Length (inches)</label>
+                    <input type="number" id="length" class="form-input" value="12" min="1" placeholder="Enter length">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Width (inches)</label>
+                    <input type="number" id="width" class="form-input" value="12" min="1" placeholder="Enter width">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="form-group">
+                    <label class="form-label">Material</label>
+                    <select id="material" class="form-input">
+                        <option value="12ga_steel">12ga Steel ($0.08/sq in)</option>
+                        <option value="14ga_steel">14ga Steel ($0.07/sq in)</option>
+                        <option value="16ga_steel" selected>16ga Steel ($0.06/sq in)</option>
+                        <option value="18ga_steel">18ga Steel ($0.05/sq in)</option>
+                        <option value="aluminum">Aluminum ($0.25/sq in)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Finish Type</label>
+                    <select id="finish" class="form-input">
+                        <option value="bare">Bare Metal</option>
+                        <option value="powder">Powder Coat</option>
+                        <option value="paint">Paint</option>
+                        <option value="anodize">Anodize</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="price-display">
+                Maximum Projected Estimate: $<span id="priceOutput">20.00</span>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">Price = ⌈((L × W × Rate) × 1.5) + $20⌉</p>
+        </section>
+
+        <!-- Module B: The "Mastery" Gallery -->
+        <section class="mb-12">
+            <h2 class="section-title">Module B: The "Mastery" Gallery</h2>
+            <p class="text-gray-600 mb-6">Click "Apply This Style" to auto-inject dimensions and material into the estimator</p>
+
+            <div id="galleryContainer" class="gallery-grid">
+                <!-- Gallery cards loaded from projects.json -->
+            </div>
+        </section>
+
+        <!-- Module C: Stateless Application System -->
+        <section class="mb-12 p-6 border-2 border-black rounded bg-slate-50">
+            <h2 class="section-title">Module C: Submit Your Application</h2>
+            <p class="text-gray-600 mb-6">Package your estimate and design details into a formal project application</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="form-group">
+                    <label class="form-label">Your Instagram Handle</label>
+                    <input type="text" id="instagramHandle" class="form-input" placeholder="@yourname">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Your Email (for response)</label>
+                    <input type="email" id="email" class="form-input" placeholder="student@school.edu">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Project Description</label>
+                <textarea id="projectDescription" class="form-input" rows="4" placeholder="Describe your project, materials, and fabrication goals..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Estimated Project Cost</label>
+                <input type="text" id="applicationPrice" class="form-input" value="$20.00" readonly>
+                <p class="text-xs text-gray-500 mt-2">This value is pulled from the estimator above</p>
+            </div>
+
+            <button class="button-primary" onclick="submitApplication()">Submit Application via Email</button>
+            <p class="text-xs text-gray-500 mt-3">Your email client will open with the application details. Review and send to submit.</p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer-legal">
+            <p><strong>Legal Notice:</strong> This is a tax-exempt educational program. All revenue supports student skill-sharing and equipment maintenance. Students manage 80% of this workflow.</p>
+            <p style="margin-top: 1rem;">For questions about this portal or to submit projects, contact your Project Lead or engineering instructor.</p>
+        </footer>
+    </div>
+
+    <script>
+        // ===== Material Rates Database =====
+        const materialRates = {
+            '12ga_steel': 0.08,
+            '14ga_steel': 0.07,
+            '16ga_steel': 0.06,
+            '18ga_steel': 0.05,
+            'aluminum': 0.25
+        };
+
+        const baseFee = 20.00;
+        const safetyCoefficient = 1.5;
+
+        // ===== Module A: Calculator Logic =====
+        function calculatePrice() {
+            const length = parseFloat(document.getElementById('length').value) || 0;
+            const width = parseFloat(document.getElementById('width').value) || 0;
+            const material = document.getElementById('material').value;
+            const rate = materialRates[material] || 0;
+
+            if (length <= 0 || width <= 0) {
+                document.getElementById('priceOutput').textContent = '20.00';
+                document.getElementById('applicationPrice').value = '$20.00';
+                return;
+            }
+
+            const area = length * width;
+            const baseCost = area * rate;
+            const withSafety = baseCost * safetyCoefficient;
+            const finalPrice = Math.ceil(withSafety + baseFee);
+
+            document.getElementById('priceOutput').textContent = finalPrice.toFixed(2);
+            document.getElementById('applicationPrice').value = '$' + finalPrice.toFixed(2);
+        }
+
+        // Attach event listeners for real-time calculation
+        document.getElementById('length').addEventListener('keyup', calculatePrice);
+        document.getElementById('width').addEventListener('keyup', calculatePrice);
+        document.getElementById('length').addEventListener('change', calculatePrice);
+        document.getElementById('width').addEventListener('change', calculatePrice);
+        document.getElementById('material').addEventListener('change', calculatePrice);
+        document.getElementById('finish').addEventListener('change', calculatePrice);
+
+        // ===== Module B: Gallery Loader =====
+        async function loadGallery() {
+            try {
+                const response = await fetch('projects.json');
+                const projects = await response.json();
+                const container = document.getElementById('galleryContainer');
+                container.innerHTML = '';
+
+                projects.forEach(project => {
+                    const card = document.createElement('div');
+                    card.className = 'gallery-card';
+                    card.innerHTML = `
+                        <img src="${project.img_url}" alt="${project.title}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22250%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22250%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Roboto%20Mono%22 font-size=%2214%22 fill=%22%23999%22%3EImage not available%3C/text%3E%3C/svg%3E'">
+                        <div class="gallery-card-content">
+                            <h3>${project.title}</h3>
+                            <p>${project.description}</p>
+                            <div class="gallery-card-meta">
+                                <div><strong>Material:</strong> ${project.material}</div>
+                                <div><strong>Dimensions:</strong> ${project.dimensions}</div>
+                                <div><strong>Student:</strong> ${project.student}</div>
+                            </div>
+                            <button class="button-secondary" onclick="applyStyle('${project.dimensions}', '${project.material}')">Apply This Style</button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error loading gallery:', error);
+                document.getElementById('galleryContainer').innerHTML = '<p class="text-gray-500">Gallery data not yet configured. Add projects.json to get started.</p>';
+            }
+        }
+
+        // ===== Module B: Apply Style Button =====
+        function applyStyle(dimensions, material) {
+            const [length, width] = dimensions.split('x').map(d => parseInt(d.trim()));
+            const materialKey = Object.keys(materialRates).find(key => material.includes(key.replace('_', 'ga').replace('ga_steel', 'ga Steel').replace('aluminum', 'Aluminum'))) ||
+                               (material.includes('12ga') ? '12ga_steel' :
+                                material.includes('14ga') ? '14ga_steel' :
+                                material.includes('16ga') ? '16ga_steel' :
+                                material.includes('18ga') ? '18ga_steel' :
+                                material.includes('Aluminum') ? 'aluminum' : '16ga_steel');
+
+            document.getElementById('length').value = length;
+            document.getElementById('width').value = width;
+            document.getElementById('material').value = materialKey;
+
+            calculatePrice();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ===== Module C: Application Submission =====
+        function submitApplication() {
+            const instagram = document.getElementById('instagramHandle').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const description = document.getElementById('projectDescription').value.trim();
+            const price = document.getElementById('applicationPrice').value;
+            const length = document.getElementById('length').value;
+            const width = document.getElementById('width').value;
+            const material = document.getElementById('material').options[document.getElementById('material').selectedIndex].text;
+
+            // Validation
+            if (length <= 0 || width <= 0) {
+                alert('Please enter valid dimensions (greater than 0)');
+                return;
+            }
+            if (!description) {
+                alert('Please provide a project description');
+                return;
+            }
+
+            const subject = `Authentic Work Application - ${instagram || 'Student'}`;
+            const body = `PROJECT APPLICATION\n\n` +
+                        `Instagram Handle: ${instagram || 'Not provided'}\n` +
+                        `Email: ${email || 'Not provided'}\n\n` +
+                        `PROJECT DETAILS\n` +
+                        `===============\n` +
+                        `Description:\n${description}\n\n` +
+                        `Dimensions: ${length}" × ${width}"\n` +
+                        `Material: ${material}\n` +
+                        `Maximum Projected Estimate: ${price}\n\n` +
+                        `---\n` +
+                        `This application was generated by the Authentic Work Portal v1.0\n` +
+                        `Please review the details above and confirm your submission.`;
+
+            const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+        }
+
+        // ===== Initialize =====
+        document.addEventListener('DOMContentLoaded', () => {
+            calculatePrice();
+            loadGallery();
+        });
+    </script>
+</body>
+</html>
