@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authentic Work Portal v1.0</title>
+    <title>CNC Shop - Student Fabrication Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
@@ -14,18 +13,97 @@
             background: linear-gradient(135deg, #fafaf9 0%, #f5f5f0 100%);
             color: #1f2937;
         }
-        .section-title {
-            color: #1f2937;
-            font-weight: 600;
-            font-size: 1.875rem;
-            margin-bottom: 0.75rem;
+        .hero-section {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: #ffffff;
+            padding: 3rem 2rem;
+            border-radius: 1.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             letter-spacing: -0.02em;
         }
-        .section-subtitle {
-            color: #6b7280;
-            font-weight: 400;
-            font-size: 0.95rem;
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: #d1d5db;
             margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .service-badge {
+            display: inline-block;
+            background: rgba(249, 115, 22, 0.2);
+            color: #fbbf24;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-right: 0.75rem;
+            margin-bottom: 0.75rem;
+            border: 1px solid rgba(249, 115, 22, 0.4);
+        }
+        .step-counter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: linear-gradient(135deg, #ff6b35 0%, #f97316 100%);
+            color: #ffffff;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-right: 0.75rem;
+        }
+        .instruction-block {
+            background: #ffffff;
+            border-left: 4px solid #f97316;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .instruction-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .instruction-text {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .section-container {
+            background-color: #ffffff;
+            border-radius: 1.25rem;
+            padding: 2.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .section-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #f3f4f6;
+        }
+        .section-title {
+            color: #1f2937;
+            font-weight: 700;
+            font-size: 1.875rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+        .section-description {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
         .price-display {
             background: linear-gradient(135deg, #ff6b35 0%, #f97316 100%);
@@ -41,91 +119,26 @@
         .price-display:hover {
             transform: translateY(-2px);
         }
-        .button-primary {
-            background: linear-gradient(135deg, #ff6b35 0%, #f97316 100%);
-            color: #ffffff;
-            padding: 0.875rem 2rem;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
-        }
-        .button-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.3);
-        }
-        .button-secondary {
-            background-color: #ffffff;
-            color: #1f2937;
-            padding: 0.75rem 1.25rem;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            border: 1px solid #e5e7eb;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .button-secondary:hover {
-            background-color: #f9fafb;
-            border-color: #d1d5db;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.75rem;
-            margin-bottom: 2rem;
-        }
-        .gallery-card {
-            border: 1px solid #e5e7eb;
-            border-radius: 1rem;
-            overflow: hidden;
-            background-color: #ffffff;
-            transition: all 0.3s ease;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        .gallery-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-        }
-        .gallery-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-        }
-        .gallery-card-content {
-            padding: 1.5rem;
-        }
-        .gallery-card h3 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #1f2937;
-        }
-        .gallery-card p {
-            font-size: 0.875rem;
-            color: #6b7280;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-        .gallery-card-meta {
-            font-size: 0.8rem;
-            color: #9ca3af;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
         .form-group {
             margin-bottom: 1.5rem;
         }
         .form-label {
-            display: block;
+            display: flex;
+            align-items: center;
             font-weight: 600;
             margin-bottom: 0.625rem;
             font-size: 0.9rem;
             color: #374151;
             letter-spacing: -0.01em;
+        }
+        .form-label-badge {
+            font-size: 0.75rem;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            margin-left: 0.5rem;
+            font-weight: 700;
         }
         .form-input {
             width: 100%;
@@ -145,34 +158,18 @@
             border-color: #f97316;
             box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
         }
-        .input-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        .section-container {
-            background-color: #ffffff;
-            border-radius: 1.25rem;
-            padding: 2rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-            border: 1px solid #e5e7eb;
-        }
         .breakdown-box {
             padding: 1.5rem;
             border-radius: 0.875rem;
             margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
         }
         .breakdown-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0.75rem 0;
             font-size: 0.95rem;
-        }
-        .breakdown-row:last-child {
-            border-bottom: none;
         }
         .breakdown-label {
             color: #6b7280;
@@ -184,7 +181,7 @@
         }
         .student-box {
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border: 1px solid #fcd34d;
+            border-color: #fcd34d;
         }
         .student-box .breakdown-value {
             color: #92400e;
@@ -192,11 +189,115 @@
         }
         .school-box {
             background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-            border: 1px solid #93c5fd;
+            border-color: #93c5fd;
         }
         .school-box .breakdown-value {
             color: #1e40af;
             font-size: 1.25rem;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .gallery-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            overflow: hidden;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .gallery-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        .gallery-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        }
+        .gallery-card-content {
+            padding: 1.25rem;
+        }
+        .gallery-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+        .gallery-card p {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+        .gallery-card-meta {
+            font-size: 0.8rem;
+            color: #9ca3af;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        .gallery-card-meta div {
+            margin-bottom: 0.25rem;
+        }
+        .technique-badge {
+            display: inline-block;
+            background: #f0f9ff;
+            color: #0369a1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
+            border: 1px solid #bfdbfe;
+        }
+        .button-primary {
+            background: linear-gradient(135deg, #ff6b35 0%, #f97316 100%);
+            color: #ffffff;
+            padding: 0.875rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+            width: 100%;
+            text-align: center;
+        }
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.3);
+        }
+        .button-secondary {
+            background-color: #ffffff;
+            color: #1f2937;
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            width: 100%;
+        }
+        .button-secondary:hover {
+            background-color: #f9fafb;
+            border-color: #d1d5db;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .info-card {
+            background: #f0f9ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #0369a1;
+        }
+        .info-card strong {
+            color: #0369a1;
         }
         .footer-legal {
             background-color: #ffffff;
@@ -214,75 +315,155 @@
         .footer-legal strong {
             color: #1f2937;
         }
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width: 768px) {
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 1.875rem;
+            }
+        }
     </style>
 </head>
-<body class="bg-white">
-    <div class="max-w-7xl mx-auto px-4 py-12">
-        <!-- Header -->
-        <div class="mb-16">
-            <h1 class="text-5xl font-semibold text-gray-900 mb-3">Authentic Work</h1>
-            <p class="text-xl text-gray-600 font-light">Student-led sheet metal design & earning calculator</p>
+<body>
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 class="hero-title">CNC Shop Portal</h1>
+            <p class="hero-subtitle">Design, estimate, and request fabrication for your sheet metal projects</p>
+            <div>
+                <span class="service-badge">🔥 CNC Plasma Cutting</span>
+                <span class="service-badge">⚙️ CNC Routing</span>
+                <span class="service-badge">🛠️ TIG Welding</span>
+                <span class="service-badge">✨ Custom Fabrication</span>
+            </div>
         </div>
 
-        <!-- Module A: The High-Fidelity Estimator -->
+        <!-- STEP 1: Understanding the Process -->
         <section class="section-container">
-            <h2 class="section-title">Your Earnings Calculator</h2>
-            <p class="section-subtitle">Enter your selling price and material. See exactly how much you'll earn.</p>
+            <div class="section-header">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <span class="step-counter">1</span>
+                    <h2 class="section-title" style="margin: 0;">How This Works</h2>
+                </div>
+                <p class="section-description">Three simple steps from idea to quote</p>
+            </div>
+
+            <div class="instruction-block">
+                <div class="instruction-title">
+                    <span style="font-size: 1.5rem; margin-right: 0.75rem;">🎯</span>
+                    Choose Your Project
+                </div>
+                <p class="instruction-text">Browse gallery examples or start with your own dimensions. You decide what you want to make.</p>
+            </div>
+
+            <div class="instruction-block">
+                <div class="instruction-title">
+                    <span style="font-size: 1.5rem; margin-right: 0.75rem;">💰</span>
+                    Set Your Price & Calculate Earnings
+                </div>
+                <p class="instruction-text">Enter the price you want to sell it for, and see how much you'll earn. You keep 50% of the profit—the school fund gets the other 50% to support equipment.</p>
+            </div>
+
+            <div class="instruction-block">
+                <div class="instruction-title">
+                    <span style="font-size: 1.5rem; margin-right: 0.75rem;">📧</span>
+                    Submit Quote Request to Teacher
+                </div>
+                <p class="instruction-text">Describe your design idea and submit. Your teacher reviews and approves the project before you begin fabrication.</p>
+            </div>
+        </section>
+
+        <!-- STEP 2: Design & Estimate Calculator -->
+        <section class="section-container">
+            <div class="section-header">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <span class="step-counter">2</span>
+                    <h2 class="section-title" style="margin: 0;">Estimate Your Earnings</h2>
+                </div>
+                <p class="section-description">Fill in your project details and desired selling price</p>
+            </div>
+
+            <div class="info-card">
+                <strong>💡 Tip:</strong> Use the gallery below to apply dimensions from existing projects, or enter your own custom measurements.
+            </div>
 
             <!-- Input Section -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="input-row">
                 <div class="form-group">
-                    <label class="form-label">Selling Price ($)</label>
-                    <input type="number" id="sellingPrice" class="form-input" value="100" min="0" placeholder="Enter desired selling price">
+                    <label class="form-label">
+                        Selling Price
+                        <span class="form-label-badge">YOUR GOAL</span>
+                    </label>
+                    <input type="number" id="sellingPrice" class="form-input" value="100" min="0" placeholder="How much do you want to sell it for?">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Material Cost per Sq In</label>
+                    <label class="form-label">
+                        Material Type
+                        <span class="form-label-badge">REQUIRED</span>
+                    </label>
                     <select id="material" class="form-input">
-                        <option value="12ga_steel">12ga Steel ($0.08/sq in)</option>
-                        <option value="14ga_steel">14ga Steel ($0.07/sq in)</option>
-                        <option value="16ga_steel" selected>16ga Steel ($0.06/sq in)</option>
-                        <option value="18ga_steel">18ga Steel ($0.05/sq in)</option>
-                        <option value="aluminum">Aluminum ($0.25/sq in)</option>
+                        <option value="12ga_steel">12ga Steel ($0.08/sq in) — Heavy duty</option>
+                        <option value="14ga_steel">14ga Steel ($0.07/sq in) — Strong</option>
+                        <option value="16ga_steel" selected>16ga Steel ($0.06/sq in) — Standard</option>
+                        <option value="18ga_steel">18ga Steel ($0.05/sq in) — Light</option>
+                        <option value="aluminum">Aluminum ($0.25/sq in) — Premium</option>
                     </select>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="input-row">
                 <div class="form-group">
-                    <label class="form-label">Length (inches)</label>
-                    <input type="number" id="length" class="form-input" value="12" min="1" placeholder="Enter length">
+                    <label class="form-label">
+                        Length
+                        <span class="form-label-badge">INCHES</span>
+                    </label>
+                    <input type="number" id="length" class="form-input" value="12" min="1" placeholder="Width of your design">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Width (inches)</label>
-                    <input type="number" id="width" class="form-input" value="12" min="1" placeholder="Enter width">
+                    <label class="form-label">
+                        Width
+                        <span class="form-label-badge">INCHES</span>
+                    </label>
+                    <input type="number" id="width" class="form-input" value="12" min="1" placeholder="Height of your design">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="form-label">Finish Type</label>
+                <label class="form-label">
+                    Finishing Technique
+                    <span class="form-label-badge">OPTIONAL</span>
+                </label>
                 <select id="finish" class="form-input">
-                    <option value="bare">Bare Metal</option>
-                    <option value="powder">Powder Coat</option>
-                    <option value="paint">Paint</option>
-                    <option value="anodize">Anodize</option>
+                    <option value="bare">Bare Metal (no finish)</option>
+                    <option value="powder">Powder Coat (durable color)</option>
+                    <option value="paint">Paint (custom color)</option>
+                    <option value="weld">TIG Welding (assembly)</option>
                 </select>
             </div>
 
             <!-- Results Section -->
-            <div class="mt-10">
+            <div class="mt-12">
+                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1.5rem; color: #1f2937;">Your Earnings Breakdown</h3>
+
                 <div class="price-display mb-8">
                     Selling Price: $<span id="sellingDisplay">100.00</span>
                 </div>
 
                 <div class="space-y-3">
-                    <div class="breakdown-box" style="background-color: #f9fafb; border: 1px solid #e5e7eb;">
+                    <div class="breakdown-box" style="background-color: #f9fafb;">
                         <div class="breakdown-row">
-                            <span class="breakdown-label">Cost to Make</span>
+                            <span class="breakdown-label">Cost to Fabricate</span>
                             <span class="breakdown-value">$<span id="costDisplay">20.00</span></span>
                         </div>
                         <div class="breakdown-row">
-                            <span class="breakdown-label">Profit (Selling − Cost)</span>
-                            <span class="breakdown-value">$<span id="profitDisplay">80.00</span></span>
+                            <span class="breakdown-label">Profit (Sell Price − Cost)</span>
+                            <span class="breakdown-value" style="color: #059669;">$<span id="profitDisplay">80.00</span></span>
                         </div>
                     </div>
 
@@ -291,7 +472,7 @@
                             <span class="breakdown-label">Your Earnings (50%)</span>
                             <span class="breakdown-value">$<span id="studentShare">40.00</span></span>
                         </div>
-                        <p class="text-sm text-gray-700 mt-2">You keep half the profit</p>
+                        <p style="font-size: 0.85rem; color: #92400e; margin: 0.75rem 0 0 0;">You keep half the profit</p>
                     </div>
 
                     <div class="breakdown-box school-box">
@@ -299,67 +480,92 @@
                             <span class="breakdown-label">School Fund (50%)</span>
                             <span class="breakdown-value">$<span id="schoolShare">40.00</span></span>
                         </div>
-                        <p class="text-sm text-gray-700 mt-2">Supports materials & equipment</p>
+                        <p style="font-size: 0.85rem; color: #1e40af; margin: 0.75rem 0 0 0;">Supports equipment & materials</p>
                     </div>
                 </div>
 
-                <p class="text-xs text-gray-500 mt-6 text-center">Cost = ⌈((Length × Width × Rate) × 1.5) + $20⌉ • Profit splits 50/50</p>
+                <p style="font-size: 0.8rem; color: #9ca3af; margin-top: 1.5rem; text-align: center; line-height: 1.6;">
+                    <strong>Formula:</strong> Cost = ⌈((Length × Width × Rate) × Safety Factor 1.5) + $20 base fee⌉
+                </p>
             </div>
         </section>
 
-        <!-- Module B: The "Mastery" Gallery -->
+        <!-- STEP 3: Browse Examples -->
         <section class="mb-12">
-            <h2 class="section-title">Gallery of Student Work</h2>
-            <p class="section-subtitle">Click "Apply This Style" to use a project's dimensions and material in your calculator</p>
+            <div style="margin-bottom: 2rem;">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <span class="step-counter">3</span>
+                    <h2 class="section-title" style="margin: 0;">Gallery: Student Project Examples</h2>
+                </div>
+                <p class="section-description">Click "Use These Specs" to apply a project's dimensions to your calculator, or customize your own</p>
+            </div>
 
             <div id="galleryContainer" class="gallery-grid">
                 <!-- Gallery cards loaded from projects.json -->
             </div>
         </section>
 
-        <!-- Module C: Project Submission -->
+        <!-- STEP 4: Submit Quote Request -->
         <section class="section-container">
-            <h2 class="section-title">Request Quote</h2>
-            <p class="section-subtitle">Submit your project details. Your quote will be sent to your teacher for approval.</p>
+            <div class="section-header">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <span class="step-counter">4</span>
+                    <h2 class="section-title" style="margin: 0;">Submit Your Quote Request</h2>
+                </div>
+                <p class="section-description">Send your project details to your teacher for approval</p>
+            </div>
+
+            <div class="info-card">
+                <strong>✅ Before submitting:</strong> Make sure your name, dimensions, and project description are complete. Your teacher will review and respond via email.
+            </div>
 
             <div class="form-group">
-                <label class="form-label">Your Name</label>
+                <label class="form-label">
+                    Your Name
+                    <span class="form-label-badge">REQUIRED</span>
+                </label>
                 <input type="text" id="studentName" class="form-input" placeholder="First & Last Name">
             </div>
 
             <div class="form-group">
-                <label class="form-label">Project Description</label>
-                <textarea id="projectDescription" class="form-input" rows="4" placeholder="What are you building? Describe the design, fabrication challenges, and why you're excited about this project."></textarea>
+                <label class="form-label">
+                    Project Description
+                    <span class="form-label-badge">REQUIRED</span>
+                </label>
+                <textarea id="projectDescription" class="form-input" rows="4" placeholder="What are you building? Why? What's the design idea? What techniques will you use (plasma cutting, routing, welding, etc.)?"></textarea>
             </div>
 
             <div class="form-group">
-                <label class="form-label">Design Summary</label>
-                <div style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1.25rem;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                <label class="form-label" style="font-weight: 700; margin-bottom: 1rem;">
+                    Project Summary (Auto-filled)
+                </label>
+                <div style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1.5rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
                         <div>
-                            <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem;">Dimensions</p>
-                            <p style="font-weight: 600; font-size: 1rem; color: #1f2937;"><span id="summaryLength">12</span>" × <span id="summaryWidth">12</span>"</p>
+                            <p style="font-size: 0.8rem; color: #6b7280; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Dimensions</p>
+                            <p style="font-weight: 600; font-size: 1.125rem; color: #1f2937;"><span id="summaryLength">12</span>" × <span id="summaryWidth">12</span>"</p>
                         </div>
                         <div>
-                            <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem;">Material</p>
-                            <p style="font-weight: 600; font-size: 1rem; color: #1f2937;"><span id="summaryMaterial">16ga Steel</span></p>
+                            <p style="font-size: 0.8rem; color: #6b7280; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Material</p>
+                            <p style="font-weight: 600; font-size: 1.125rem; color: #1f2937;"><span id="summaryMaterial">16ga Steel</span></p>
                         </div>
                     </div>
-                    <div style="border-top: 1px solid #e5e7eb; padding-top: 1rem;">
-                        <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem;">Production Cost</p>
-                        <p style="font-weight: 600; font-size: 1.125rem; color: #1f2937;">$<span id="summaryCost">20.00</span></p>
+                    <div style="border-top: 1px solid #e5e7eb; padding-top: 1.5rem;">
+                        <p style="font-size: 0.8rem; color: #6b7280; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Fabrication Cost</p>
+                        <p style="font-weight: 600; font-size: 1.375rem; color: #1f2937;">$<span id="summaryCost">20.00</span></p>
                     </div>
                 </div>
             </div>
 
-            <button class="button-primary" onclick="submitApplication()" style="width: 100%; text-align: center; justify-content: center;">Send Quote Request</button>
-            <p class="text-xs text-gray-500 mt-4" style="text-align: center;">A quote request will be sent to your teacher from your school email.</p>
+            <button class="button-primary" onclick="submitApplication()">Send Quote Request to Teacher</button>
+            <p style="font-size: 0.8rem; color: #6b7280; margin-top: 1rem; text-align: center;">Your quote will be sent from your school email. Your teacher will review and respond within 24 hours.</p>
         </section>
 
         <!-- Footer -->
         <footer class="footer-legal">
-            <p><strong>About This Program</strong><br>This is a tax-exempt educational program where students design and build sheet metal projects. You keep 50% of the profit from each sale, and 50% supports the school's materials and equipment fund.</p>
-            <p>Have questions? Reach out to your Project Lead or engineering instructor.</p>
+            <p><strong>About the CNC Shop Program</strong><br>This is a tax-exempt educational program where students design, estimate, and fabricate sheet metal projects using professional-grade equipment (CNC plasma, CNC routing, TIG welding). You earn 50% of profits from each sale, while 50% supports the school's equipment maintenance and materials fund.</p>
+            <p><strong>Services Available:</strong> CNC Plasma Cutting • CNC Routing • TIG Welding • Custom Fabrication • Design Consultation</p>
+            <p>Have questions? Reach out to your Shop Lead or engineering instructor.</p>
         </footer>
     </div>
 
@@ -404,8 +610,8 @@
 
             // Calculate profit and splits
             const profit = sellingPrice - costToMake;
-            const studentEarnings = profit * 0.5;  // Student gets 50% of profit
-            const schoolFund = profit * 0.5;       // School gets 50% of profit
+            const studentEarnings = profit * 0.5;
+            const schoolFund = profit * 0.5;
 
             // Update displays
             document.getElementById('costDisplay').textContent = costToMake.toFixed(2);
@@ -446,23 +652,25 @@
                     const card = document.createElement('div');
                     card.className = 'gallery-card';
                     card.innerHTML = `
-                        <img src="${project.img_url}" alt="${project.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22250%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22250%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Roboto%20Mono%22 font-size=%2214%22 fill=%22%23999%22%3EImage not available%3C/text%3E%3C/svg%3E'">
+                        <img src="${project.img_url}" alt="${project.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22280%22 height=%22220%22%3E%3Crect fill=%22%23ddd%22 width=%22280%22 height=%22220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22system-ui%22 font-size=%2212%22 fill=%22%23999%22%3EImage not available%3C/text%3E%3C/svg%3E'">
                         <div class="gallery-card-content">
                             <h3>${project.title}</h3>
                             <p>${project.description}</p>
                             <div class="gallery-card-meta">
+                                <div><strong>Technique:</strong> ${project.technique}</div>
                                 <div><strong>Material:</strong> ${project.material}</div>
                                 <div><strong>Dimensions:</strong> ${project.dimensions}</div>
-                                <div><strong>Student:</strong> ${project.student}</div>
+                                <div><strong>Created by:</strong> ${project.student}</div>
                             </div>
-                            <button class="button-secondary" onclick="applyStyle('${project.dimensions}', '${project.material}')">Apply This Style</button>
+                            <span class="technique-badge">${project.technique}</span>
+                            <button class="button-secondary" onclick="applyStyle('${project.dimensions}', '${project.material}')" style="margin-top: 0.75rem;">Use These Specs</button>
                         </div>
                     `;
                     container.appendChild(card);
                 });
             } catch (error) {
                 console.error('Error loading gallery:', error);
-                document.getElementById('galleryContainer').innerHTML = '<p class="text-gray-500">Gallery data not yet configured. Add projects.json to get started.</p>';
+                document.getElementById('galleryContainer').innerHTML = '<p style="color: #6b7280; grid-column: 1 / -1; text-align: center; padding: 2rem;">Gallery not yet configured. Check back soon!</p>';
             }
         }
 
@@ -507,19 +715,20 @@
                 return;
             }
 
-            const subject = `[Authentic Work] Project Quote Request - ${studentName}`;
+            const subject = `[CNC Shop] Project Quote Request - ${studentName}`;
             const body = `PROJECT QUOTE REQUEST\n\n` +
                         `Student Name: ${studentName}\n\n` +
-                        `PROJECT DETAILS\n` +
-                        `───────────────────────\n` +
-                        `Description:\n${description}\n\n` +
-                        `Specifications:\n` +
-                        `  Dimensions: ${length}" × ${width}"\n` +
-                        `  Material: ${material}\n` +
-                        `  Production Cost: $${cost}\n\n` +
-                        `───────────────────────\n\n` +
-                        `To approve or request changes, reply to this email.\n\n` +
-                        `Generated by Authentic Work Portal v1.0`;
+                        `PROJECT DESCRIPTION\n` +
+                        `─────────────────────────────────\n` +
+                        `${description}\n\n` +
+                        `SPECIFICATIONS\n` +
+                        `─────────────────────────────────\n` +
+                        `Dimensions: ${length}" × ${width}"\n` +
+                        `Material: ${material}\n` +
+                        `Fabrication Cost: $${cost}\n\n` +
+                        `─────────────────────────────────\n\n` +
+                        `Please review and respond with approval or requested changes.\n\n` +
+                        `Sent via CNC Shop Portal`;
 
             // Create mailto link to teacher
             const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
