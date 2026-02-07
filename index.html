@@ -745,19 +745,6 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="form-label">
-                    Finishing Technique
-                    <span class="badge-form">OPTIONAL</span>
-                </label>
-                <select id="finish" class="form-select">
-                    <option value="bare">Bare Metal (no finish)</option>
-                    <option value="powder">Powder Coat (durable color)</option>
-                    <option value="paint">Paint (custom color)</option>
-                    <option value="weld">TIG Welding (assembly)</option>
-                </select>
-            </div>
-
             <h3>Your Earnings Breakdown</h3>
 
             <div class="price-display">
@@ -945,11 +932,22 @@
             const costToMake = Math.ceil(withSafety + baseFee);
 
             const profit = sellingPrice - costToMake;
-            const studentEarnings = profit * 0.5;
-            const schoolFund = profit * 0.5;
+            const profitEl = document.getElementById('profitDisplay');
+
+            if (profit < 0) {
+                profitEl.textContent = '0.00';
+                profitEl.parentElement.style.color = '#dc2626';
+                profitEl.parentElement.title = 'Raise your selling price above $' + costToMake.toFixed(2) + ' to earn profit';
+            } else {
+                profitEl.textContent = profit.toFixed(2);
+                profitEl.parentElement.style.color = '';
+                profitEl.parentElement.title = '';
+            }
+
+            const studentEarnings = Math.max(profit * 0.5, 0);
+            const schoolFund = Math.max(profit * 0.5, 0);
 
             document.getElementById('costDisplay').textContent = costToMake.toFixed(2);
-            document.getElementById('profitDisplay').textContent = profit.toFixed(2);
             document.getElementById('studentShare').textContent = studentEarnings.toFixed(2);
             document.getElementById('schoolShare').textContent = schoolFund.toFixed(2);
 
@@ -957,7 +955,8 @@
             document.getElementById('summaryWidth').textContent = width;
             document.getElementById('summaryCost').textContent = costToMake.toFixed(2);
 
-            const materialLabel = document.getElementById('material').options[document.getElementById('material').selectedIndex].text;
+            const materialText = document.getElementById('material').options[document.getElementById('material').selectedIndex].text;
+            const materialLabel = materialText.split('(')[0].trim();
             document.getElementById('summaryMaterial').textContent = materialLabel;
         }
 
@@ -969,7 +968,6 @@
         document.getElementById('length').addEventListener('change', calculatePrice);
         document.getElementById('width').addEventListener('change', calculatePrice);
         document.getElementById('material').addEventListener('change', calculatePrice);
-        document.getElementById('finish').addEventListener('change', calculatePrice);
 
         // ===== GALLERY LOADER =====
         async function loadGallery() {
@@ -1008,12 +1006,11 @@
         // ===== APPLY STYLE =====
         function applyStyle(dimensions, material) {
             const [length, width] = dimensions.split('x').map(d => parseInt(d.trim()));
-            const materialKey = Object.keys(materialRates).find(key => material.includes(key.replace('_', 'ga').replace('ga_steel', 'ga Steel').replace('aluminum', 'Aluminum'))) ||
-                               (material.includes('12ga') ? '12ga_steel' :
+            const materialKey = material.includes('12ga') ? '12ga_steel' :
                                 material.includes('14ga') ? '14ga_steel' :
                                 material.includes('16ga') ? '16ga_steel' :
                                 material.includes('18ga') ? '18ga_steel' :
-                                material.includes('Aluminum') ? 'aluminum' : '16ga_steel');
+                                material.toLowerCase().includes('aluminum') ? 'aluminum' : '16ga_steel';
 
             document.getElementById('length').value = length;
             document.getElementById('width').value = width;
@@ -1065,7 +1062,7 @@
                         `I am ready to proceed with fabrication upon approval.\n\n` +
                         `Sent via CNC Shop Portal`;
 
-            const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            const mailtoLink = `mailto:Andy.mcateer@corvallis.k12.or.us?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             window.location.href = mailtoLink;
         }
 
