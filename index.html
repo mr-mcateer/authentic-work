@@ -839,7 +839,14 @@
                         `DESCRIPTION: ${description}\n`;
 
             const mailtoLink = `mailto:andy.mcateer@corvallis.k12.or.us?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            window.location.href = mailtoLink;
+
+            // Open in new tab so the calculator page stays open
+            // (window.location.href navigates away and closes the page on Chromebooks)
+            const a = document.createElement('a');
+            a.href = mailtoLink;
+            a.target = '_blank';
+            a.rel = 'noopener';
+            a.click();
         }
 
         // ===== INITIALIZE =====
