@@ -564,38 +564,23 @@
             </div>
         </div>
 
-        <!-- STEP 1: PROCESS OVERVIEW -->
+        <!-- STEP 1: INSTRUCTIONS -->
         <section class="section">
             <div class="section-header">
                 <div class="section-header-flex">
                     <span class="step-counter">1</span>
                     <h2>How This Works</h2>
                 </div>
-                <p class="section-description">Three steps from idea to finished product</p>
             </div>
 
             <div class="instruction-block">
-                <div class="instruction-block-title">
-                    <span class="instruction-block-emoji">💰</span>
-                    Enter Your Project &amp; Set Your Price
-                </div>
-                <p class="instruction-block-text">Enter your dimensions, choose your material, and set the price you want to sell it for. The calculator shows your real costs and earnings instantly.</p>
+                <p class="instruction-block-text"><strong>1.</strong> Pick your material and enter the size of your piece below.</p>
             </div>
-
             <div class="instruction-block">
-                <div class="instruction-block-title">
-                    <span class="instruction-block-emoji">📧</span>
-                    Submit Permission Request
-                </div>
-                <p class="instruction-block-text">Describe your design idea and submit. Your teacher and our expert engineer review it for quality, safety, and manufacturability.</p>
+                <p class="instruction-block-text"><strong>2.</strong> Set the price you want to sell it for. The calculator shows your real cost and what you earn.</p>
             </div>
-
             <div class="instruction-block">
-                <div class="instruction-block-title">
-                    <span class="instruction-block-emoji">✅</span>
-                    Receive Ready-to-Ship Specs
-                </div>
-                <p class="instruction-block-text">Upon approval, you receive detailed fabrication specifications, cutting lists, and finishing instructions. Everything needed for professional production.</p>
+                <p class="instruction-block-text"><strong>3.</strong> Fill in your name and project description, then hit submit. Mr. McAteer gets an email with your specs.</p>
             </div>
         </section>
 
@@ -703,18 +688,13 @@
             </p>
         </section>
 
-        <!-- STEP 3: PERMISSION REQUEST -->
+        <!-- STEP 3: SUBMIT -->
         <section class="section">
             <div class="section-header">
                 <div class="section-header-flex">
                     <span class="step-counter">3</span>
-                    <h2>Request Permission to Fabricate</h2>
+                    <h2>Submit Your Project</h2>
                 </div>
-                <p class="section-description">Submit your project for teacher approval and expert engineering review</p>
-            </div>
-
-            <div class="info-card">
-                <strong>Expert Review Process:</strong> Your project will be reviewed by our expert engineer who will ensure it's ready for production—optimizing for quality, safety, and manufacturability. You'll receive ready-to-ship specifications within 24 hours.
             </div>
 
             <div class="form-group">
@@ -727,75 +707,35 @@
 
             <div class="form-group">
                 <label class="form-label">
-                    Project Description
+                    What are you making?
                     <span class="badge-form">REQUIRED</span>
                 </label>
-                <textarea id="projectDescription" class="form-textarea" rows="4" placeholder="What are you building? Why? What techniques will you use (plasma cutting, routing, welding)?"></textarea>
+                <textarea id="projectDescription" class="form-textarea" rows="3" placeholder="Describe your project (e.g. custom logo sign, metal bracket, wall art)"></textarea>
             </div>
 
-            <div class="form-group">
-                <label class="form-label" style="font-weight: var(--font-weight-bold); margin-bottom: var(--space-md);">
-                    Project Summary (Auto-filled)
-                </label>
-                <div class="summary-box">
-                    <div class="summary-grid">
-                        <div>
-                            <div class="summary-item-label">Dimensions</div>
-                            <div class="summary-item-value"><span id="summaryLength">12</span>" × <span id="summaryWidth">12</span>"</div>
-                        </div>
-                        <div>
-                            <div class="summary-item-label">Material</div>
-                            <div class="summary-item-value"><span id="summaryMaterial">16ga Steel</span></div>
-                        </div>
+            <div class="summary-box" style="margin-bottom: var(--space-md);">
+                <div class="summary-grid">
+                    <div>
+                        <div class="summary-item-label">Dimensions</div>
+                        <div class="summary-item-value"><span id="summaryLength">12</span>" x <span id="summaryWidth">12</span>"</div>
                     </div>
-                    <div class="summary-divider">
-                        <div class="summary-item-label">Fabrication Cost</div>
-                        <div style="font-weight: var(--font-weight-bold); font-size: 1.375rem; color: var(--color-text-dark);">$<span id="summaryCost">0.00</span></div>
+                    <div>
+                        <div class="summary-item-label">Material</div>
+                        <div class="summary-item-value"><span id="summaryMaterial">16ga Steel</span></div>
                     </div>
                 </div>
-            </div>
-
-            <button class="button button-primary" onclick="submitApplication()">Request Permission to Fabricate</button>
-            <p style="font-size: var(--font-size-small); color: var(--color-text-mid); margin-top: var(--space-md); text-align: center;">Your request will be reviewed by your teacher and our expert engineer. You'll receive ready-to-ship specifications within 24 hours.</p>
-        </section>
-
-        <!-- EXPERT ENGINEER SECTION -->
-        <section class="section">
-            <div class="section-header">
-                <h2>Expert Engineering Review</h2>
-                <p class="section-description">Every project gets professional engineering sign-off before production</p>
-            </div>
-
-            <div class="instruction-block">
-                <div class="instruction-block-title">
-                    <span class="instruction-block-emoji">✅</span>
-                    Design Optimization
+                <div class="summary-divider">
+                    <div class="summary-item-label">Fabrication Cost</div>
+                    <div style="font-weight: var(--font-weight-bold); font-size: 1.375rem; color: var(--color-text-dark);">$<span id="summaryCost">0.00</span></div>
                 </div>
-                <p class="instruction-block-text">Our expert engineer reviews your design for manufacturability, structural integrity, and best practices. We optimize for material efficiency and production quality.</p>
             </div>
 
-            <div class="instruction-block">
-                <div class="instruction-block-title">
-                    <span class="instruction-block-emoji">📋</span>
-                    Ready-to-Ship Specifications
-                </div>
-                <p class="instruction-block-text">You receive detailed fabrication specs, cutting lists, welding diagrams, and finishing instructions. Everything you need to produce a professional-quality final product.</p>
-            </div>
-
-            <div class="instruction-block">
-                <div class="instruction-block-title">
-                    <span class="instruction-block-emoji">🎯</span>
-                    Quality Assurance
-                </div>
-                <p class="instruction-block-text">Expert guidance ensures your finished piece meets professional standards—safe to ship, ready for customers, and backed by engineering approval.</p>
-            </div>
+            <button class="button button-primary" onclick="submitApplication()">Submit to Mr. McAteer</button>
         </section>
 
         <!-- FOOTER -->
         <footer>
-            <p><strong>About the CNC Shop Program</strong><br>This is a tax-exempt educational program where students design, estimate, and fabricate sheet metal projects using professional-grade equipment (CNC plasma, CNC routing, TIG welding). Every project receives expert engineering review to ensure ready-to-ship quality. You earn 50% of profits from each sale, while 50% supports the school's equipment maintenance and materials fund.</p>
-            <p><strong>Services Available:</strong> CNC Plasma Cutting • CNC Routing • TIG Welding • Custom Fabrication • Expert Engineering Review • Ready-to-Ship Specifications</p>
-            <p>Have questions? Reach out to your Shop Lead or engineering instructor.</p>
+            <p><strong>Crescent Valley High School — CNC Shop Program</strong><br>You earn 50% of profits from each sale. The other 50% supports equipment and materials.</p>
         </footer>
     </main>
 
@@ -903,6 +843,12 @@
             const materialText = document.getElementById('material').options[document.getElementById('material').selectedIndex].text;
             const materialLabel = materialText.split('—')[0].trim();
             const cost = document.getElementById('summaryCost').textContent;
+            const sellingPrice = document.getElementById('sellingPrice').value;
+            const profit = document.getElementById('profitDisplay').textContent;
+            const studentShare = document.getElementById('studentShare').textContent;
+            const schoolShare = document.getElementById('schoolShare').textContent;
+            const area = (parseFloat(length) * parseFloat(width)) || 0;
+            const today = new Date().toLocaleDateString('en-US');
 
             if (!studentName) {
                 alert('Please enter your name');
@@ -917,27 +863,24 @@
                 return;
             }
 
-            const subject = `[CNC Shop] Fabrication Permission Request - ${studentName}`;
-            const body = `FABRICATION PERMISSION REQUEST\n\n` +
-                        `Student Name: ${studentName}\n\n` +
-                        `PROJECT DESCRIPTION\n` +
-                        `─────────────────────────────────\n` +
-                        `${description}\n\n` +
-                        `SPECIFICATIONS\n` +
-                        `─────────────────────────────────\n` +
-                        `Dimensions: ${length}" × ${width}"\n` +
-                        `Material: ${materialLabel}\n` +
-                        `Estimated Fabrication Cost: $${cost}\n\n` +
-                        `REQUEST\n` +
-                        `─────────────────────────────────\n` +
-                        `Please review this project for:\n` +
-                        `✓ Teacher approval\n` +
-                        `✓ Expert engineering review\n` +
-                        `✓ Ready-to-ship design specifications\n\n` +
-                        `I am ready to proceed with fabrication upon approval.\n\n` +
-                        `Sent via CNC Shop Portal`;
+            // Subject: structured for Gmail filters
+            // Filter on: [CVHS-CNC] to catch all orders
+            const subject = `[CVHS-CNC] ${studentName} | ${materialLabel} ${length}x${width} | $${cost}`;
 
-            const mailtoLink = `mailto:Andy.mcateer@corvallis.k12.or.us?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            // Body: key:value pairs for data recording
+            const body = `STUDENT: ${studentName}\n` +
+                        `DATE: ${today}\n` +
+                        `MATERIAL: ${materialLabel}\n` +
+                        `DIMENSIONS: ${length}" x ${width}"\n` +
+                        `AREA: ${area} sq in\n` +
+                        `FABRICATION COST: $${cost}\n` +
+                        `SELL PRICE: $${parseFloat(sellingPrice).toFixed(2)}\n` +
+                        `PROFIT: $${profit}\n` +
+                        `STUDENT SHARE: $${studentShare}\n` +
+                        `SCHOOL SHARE: $${schoolShare}\n\n` +
+                        `DESCRIPTION: ${description}\n`;
+
+            const mailtoLink = `mailto:andy.mcateer@corvallis.k12.or.us?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             window.location.href = mailtoLink;
         }
 
