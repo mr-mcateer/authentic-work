@@ -838,15 +838,10 @@
                         `SCHOOL SHARE: $${schoolShare}\n\n` +
                         `DESCRIPTION: ${description}\n`;
 
-            const mailtoLink = `mailto:andy.mcateer@corvallis.k12.or.us?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-            // Open in new tab so the calculator page stays open
-            // (window.location.href navigates away and closes the page on Chromebooks)
-            const a = document.createElement('a');
-            a.href = mailtoLink;
-            a.target = '_blank';
-            a.rel = 'noopener';
-            a.click();
+            // Open Gmail compose directly (corvallis.k12.or.us = Google Workspace)
+            // Falls back to mailto: if Gmail doesn't load
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&to=andy.mcateer@corvallis.k12.or.us&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.open(gmailUrl, '_blank', 'noopener');
         }
 
         // ===== INITIALIZE =====
