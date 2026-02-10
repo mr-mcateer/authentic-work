@@ -7,14 +7,14 @@
     <style>
         /* ===== DESIGN SYSTEM: CSS VARIABLES ===== */
         :root {
-            /* Color System */
-            --color-primary: #f97316;
-            --color-primary-light: #ff6b35;
-            --color-accent: #059669;
-            --color-earning-bg: #fef3c7;
-            --color-earning-text: #92400e;
-            --color-school-bg: #dbeafe;
-            --color-school-text: #1e40af;
+            /* Color System — CVHS Raiders: Maroon & Gold */
+            --color-primary: #7B2332;
+            --color-primary-light: #943545;
+            --color-accent: #C8963E;
+            --color-earning-bg: #FDF3E0;
+            --color-earning-text: #7A5A1A;
+            --color-school-bg: #F5E6E9;
+            --color-school-text: #5A1525;
 
             /* Neutrals */
             --color-text-dark: #1f2937;
@@ -53,7 +53,7 @@
 
             /* Shadows */
             --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 12px rgba(249, 115, 22, 0.2);
+            --shadow-md: 0 4px 12px rgba(123, 35, 50, 0.15);
             /* Transitions */
             --transition-fast: 0.2s ease;
             --transition-normal: 0.3s ease;
@@ -118,7 +118,7 @@
 
         /* ===== HERO SECTION ===== */
         .hero {
-            background: linear-gradient(135deg, var(--color-text-dark) 0%, #374151 100%);
+            background: linear-gradient(135deg, #5A1525 0%, var(--color-primary) 100%);
             color: var(--color-white);
             padding: var(--space-2xl) var(--space-lg);
             border-radius: var(--radius-lg);
@@ -152,9 +152,9 @@
             border-radius: var(--radius-sm);
             font-size: var(--font-size-tiny);
             font-weight: var(--font-weight-bold);
-            border: 1px solid rgba(249, 115, 22, 0.4);
-            background: rgba(249, 115, 22, 0.2);
-            color: #fbbf24;
+            border: 1px solid rgba(200, 150, 62, 0.5);
+            background: rgba(200, 150, 62, 0.25);
+            color: #E8C55A;
         }
 
         .badge-form {
@@ -234,7 +234,7 @@
         .form-textarea:focus {
             outline: none;
             border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+            box-shadow: 0 0 0 3px rgba(123, 35, 50, 0.1);
         }
 
         /* ===== BUTTONS ===== */
@@ -263,7 +263,7 @@
 
         .button-primary:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.3);
+            box-shadow: 0 6px 20px rgba(123, 35, 50, 0.3);
         }
 
         /* ===== PRICING DISPLAY ===== */
@@ -297,8 +297,8 @@
         }
 
         .breakdown-box-earning {
-            background: linear-gradient(135deg, var(--color-earning-bg) 0%, #fde68a 100%);
-            border-color: #fcd34d;
+            background: linear-gradient(135deg, var(--color-earning-bg) 0%, #F5DEB3 100%);
+            border-color: #D4A843;
         }
 
         .breakdown-box-earning .breakdown-value {
@@ -307,8 +307,8 @@
         }
 
         .breakdown-box-school {
-            background: linear-gradient(135deg, var(--color-school-bg) 0%, #bfdbfe 100%);
-            border-color: #93c5fd;
+            background: linear-gradient(135deg, var(--color-school-bg) 0%, #E8C5CC 100%);
+            border-color: #C89BA5;
         }
 
         .breakdown-box-school .breakdown-value {
