@@ -104,11 +104,6 @@
             color: var(--color-text-mid);
         }
 
-        small, .small {
-            font-size: var(--font-size-small);
-            color: var(--color-text-light);
-        }
-
         /* ===== CONTAINER ===== */
         .container {
             max-width: 1152px;
@@ -283,14 +278,6 @@
             outline: none;
             border-color: var(--color-primary);
             box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
-        }
-
-        .form-input:disabled,
-        .form-select:disabled,
-        .form-textarea:disabled {
-            background: var(--color-bg-lighter);
-            color: var(--color-text-light);
-            cursor: not-allowed;
         }
 
         /* ===== BUTTONS ===== */
@@ -599,6 +586,8 @@
                 </div>
             </div>
 
+            <p id="sheetWarning" style="display:none; background:#fef2f2; color:#dc2626; border:1px solid #fecaca; border-radius:var(--radius-sm); padding:var(--space-sm) var(--space-base); margin-bottom:var(--space-md); font-size:var(--font-size-small); font-weight:var(--font-weight-semibold);">Dimensions exceed stock sheet size (48" x 96"). Check your measurements.</p>
+
             <h3>Your Earnings Breakdown</h3>
 
             <div class="price-display">
@@ -737,6 +726,11 @@
 
             document.getElementById('sellingDisplay').textContent = sellingPrice.toFixed(2);
 
+            // Stock sheet: 48" x 96" — warn if either dimension exceeds
+            const sheetWarning = document.getElementById('sheetWarning');
+            const fitsSheet = (length <= 96 && width <= 48) || (length <= 48 && width <= 96);
+            sheetWarning.style.display = (length > 0 && width > 0 && !fitsSheet) ? 'block' : 'none';
+
             if (length <= 0 || width <= 0) {
                 document.getElementById('materialCostDisplay').textContent = '0.00';
                 document.getElementById('consumableCostDisplay').textContent = '0.00';
@@ -792,12 +786,10 @@
         }
 
         // ===== EVENT LISTENERS =====
-        document.getElementById('sellingPrice').addEventListener('keyup', calculatePrice);
-        document.getElementById('sellingPrice').addEventListener('change', calculatePrice);
-        document.getElementById('length').addEventListener('keyup', calculatePrice);
-        document.getElementById('width').addEventListener('keyup', calculatePrice);
-        document.getElementById('length').addEventListener('change', calculatePrice);
-        document.getElementById('width').addEventListener('change', calculatePrice);
+        // 'input' fires on typing, paste, autofill, and spinner clicks (keyup misses all but typing)
+        document.getElementById('sellingPrice').addEventListener('input', calculatePrice);
+        document.getElementById('length').addEventListener('input', calculatePrice);
+        document.getElementById('width').addEventListener('input', calculatePrice);
         document.getElementById('material').addEventListener('change', calculatePrice);
 
         // ===== SUBMIT APPLICATION =====
