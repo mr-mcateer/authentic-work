@@ -1,103 +1,68 @@
-# Authentic Work Portal v1.0
+# CVHS Plasma Shop
 
-A minimalist, high-utility web portal for school-based engineering enterprises. Features a real-time estimator, mastery gallery, and stateless application system.
+Student pricing calculator and project gallery for the Crescent Valley HS metals
+program. A student picks material, finish, and size, sets a selling price, and sees
+what the piece costs to make and what their share of the profit is. Live at
+https://mr-mcateer.github.io/authentic-work/
 
 ## Architecture
 
-- **Frontend**: HTML5, Tailwind CSS (CDN), Vanilla JavaScript (ES6+)
-- **Hosting**: GitHub Pages (Static, zero-cost)
-- **Data Strategy**: Flat-file JSON (no database)
-- **State Management**: Stateless (client-side only)
-- **Communication**: mailto: URI Scheme for lead capture
+- **Frontend**: HTML5, hand-rolled CSS (`styles.css`, CVHS maroon and gold), vanilla JavaScript (`app.js`)
+- **Hosting**: GitHub Pages (static, zero cost)
+- **Data**: flat-file `projects.json`, no database
+- **Submission**: `mailto:` link to the instructor, nothing stored server-side
 
-## Features
+## How the price works
 
-### Module A: The High-Fidelity Estimator
-Real-time calculator using a "Safety-First" coefficient for sheet metal fabrication.
+The calculator works backwards from the selling price:
 
-**Formula**: `Price = ⌈((L × W × Rate) × 1.5) + $20⌉`
+```
+Cost to Make = ceil( (area x material rate + area x $0.01 consumables) x 1.20 waste + $10 shop fee + finish )
+Profit       = Selling Price - Cost to Make
+Student Share = 50% of profit    School Fund = 50% of profit
+```
 
-**Material Rates (2026)**:
-- 12ga Steel: $0.08/sq in
-- 14ga Steel: $0.07/sq in
-- 16ga Steel: $0.06/sq in
-- 18ga Steel: $0.05/sq in
-- Aluminum: $0.25/sq in
+- **Waste factor 1.20**: kerf, edge margins, nesting inefficiency
+- **Consumables $0.01/sq in**: plasma tips, nozzles, electrodes, shield gas
+- **Shop fee $10**: amortized delivery and shearing
+- **Finishes**: Bare $0, Paint +$10, Powder Coat +$15, TIG Weld +$25
+- Negative profit shows a loss warning instead of earnings
 
-**Base Fee**: $20.00 (covers $10 shop consumables + $10 student design time)
+**Material rates** (per sq in, from the RAM Steelco quote to CVHS, 10/22/2025):
 
-### Module B: The "Mastery" Gallery
-Dynamic grid of student projects loaded from `projects.json`. Each card includes:
-- Project image (lazy-loaded)
-- Title, dimensions, material, student name
-- Brief fabrication challenge/success description
-- "Apply This Style" button to auto-inject dimensions into the estimator
+| Material | Rate | Basis |
+|---|---|---|
+| 12ga Steel | $0.036 | extrapolated from weight at ~$120/CWT |
+| 14ga Steel | $0.026 | 48x96 sheet, 100 lb, $121.60/CWT |
+| 16ga Steel | $0.021 | 48x96 sheet, 80 lb, $118.46/CWT |
+| 18ga Steel | $0.016 | extrapolated from weight at ~$120/CWT |
 
-### Module C: Stateless Application System
-Students package their estimate into a formal email-based application:
-- Auto-populates with calculator state
-- Validates dimensions and description
-- Generates mailto: link for submission
-- No server-side storage (security & privacy by design)
+When RAM re-quotes, update the `materials` array at the top of `app.js` and this table.
 
-## Getting Started
+## Gallery
 
-### Local Development
-1. Open `index.html` in a web browser
-2. The estimator calculates prices in real-time
-3. Gallery loads from `projects.json`
-4. Submit button opens email client with pre-filled application
-
-### Adding Projects
-Edit `projects.json` with your project data:
+Cards load from `projects.json`. "Try this size" loads a past project's dimensions
+into the calculator.
 
 ```json
 {
-  "id": "unique-id",
-  "title": "Project Name",
-  "dimensions": "12x12",
+  "id": "proj-001",
+  "title": "Name Plaque with Tank Design",
+  "technique": "CNC Plasma Cutting",
+  "dimensions": "18x10",
   "material": "16ga Steel",
-  "student": "Initial. Last.",
-  "description": "Fabrication challenge/success",
-  "img_url": "img/your-image.jpg"
+  "student": "C. Rutherford",
+  "img_url": "img/cordell-rutherford.jpg"
 }
 ```
 
-### Adding Images
-1. Place images in the `/img` directory
-2. Update `img_url` in `projects.json` to point to your images
-3. Commit and push to GitHub
+Images go in `/img`. Strip EXIF/GPS before committing; no student last names.
 
 ## Deployment
 
-This site is deployed on GitHub Pages. To set it up:
+Push to `main`; GitHub Pages serves the repo root. No build step.
 
-1. Push code to `main` branch
-2. In GitHub repo Settings → Pages, select `main` branch as source
-3. Site will be live at `https://username.github.io/authentic-work`
+## Notes
 
-## Design Guidelines
-
-- **Aesthetic**: Shop-Floor Brutalism (monospace fonts, stark contrast)
-- **Color Palette**:
-  - White (#FFFFFF)
-  - Slate (#F8FAFC)
-  - Black (#000000)
-  - Safety Orange (#F97316) for primary actions
-- **Responsive**: Mobile-first design (optimized for Instagram in-app browser)
-
-## Legal Notice
-
-This is a tax-exempt educational program. All revenue supports student skill-sharing and equipment maintenance. Students manage 80% of this workflow.
-
-## Success Criteria
-
-- ✅ Zero-cost hosting (GitHub Pages)
-- ✅ Stateless architecture (no user data stored)
-- ✅ Low friction (price estimate in <15 seconds)
-- ✅ Mobile-responsive design
-- ✅ Zero build overhead (CDN-based CSS/fonts)
-
-## Support
-
-For questions about this portal or to submit projects, contact your Project Lead or engineering instructor.
+This is a tax-exempt educational program. Revenue supports student skill-building
+and equipment maintenance.
