@@ -52,8 +52,8 @@ into the calculator.
   "technique": "CNC Plasma Cutting",
   "dimensions": "18x10",
   "material": "16ga Steel",
-  "student": "C. Rutherford",
-  "img_url": "img/cordell-rutherford.jpg"
+  "student": "Student Project",
+  "img_url": "img/name-plaque-tank.jpg"
 }
 ```
 
