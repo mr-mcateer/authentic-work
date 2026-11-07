@@ -3,7 +3,9 @@
 // 14ga: 48x96 sheet, 100 lbs, $121.60/CWT = $0.026/sq in
 // 16ga: 48x96 sheet, 80 lbs, $118.46/CWT = $0.021/sq in
 // 12ga/18ga: extrapolated from weight ratios at ~$120/CWT
+// 10ga: 5.625 lb/sq ft at $121.60/CWT = $0.047/sq in (same method; confirm on the next RAM quote)
 const materials = [
+    { id: '10ga_steel', name: '10ga Steel', rate: 0.047, desc: 'Bookends' },
     { id: '12ga_steel', name: '12ga Steel', rate: 0.036, desc: 'Heavy duty' },
     { id: '14ga_steel', name: '14ga Steel', rate: 0.026, desc: 'Strong' },
     { id: '16ga_steel', name: '16ga Steel', rate: 0.021, desc: 'Standard' },
@@ -32,7 +34,7 @@ const TEACHER_EMAIL = 'andy.mcateer@corvallis.k12.or.us';
 // ===== STATE =====
 let state = {
     sellingPrice: 100,
-    materialIndex: 2,  // 16ga steel default (index in 4-item array)
+    materialIndex: 3,  // 16ga steel default (index in 5-item array)
     finishIndex: 0,    // bare metal default
     length: 12,
     width: 12

@@ -32,6 +32,7 @@ Student Share = 50% of profit    School Fund = 50% of profit
 
 | Material | Rate | Basis |
 |---|---|---|
+| 10ga Steel | $0.047 | 5.625 lb/sq ft at $121.60/CWT (same method, confirm on next quote) |
 | 12ga Steel | $0.036 | extrapolated from weight at ~$120/CWT |
 | 14ga Steel | $0.026 | 48x96 sheet, 100 lb, $121.60/CWT |
 | 16ga Steel | $0.021 | 48x96 sheet, 80 lb, $118.46/CWT |
