@@ -1,15 +1,18 @@
 // ===== MATERIAL RATES (per sq in) =====
-// Source: RAM Steelco quote 10/22/2025 to Crescent Valley High School
-// 14ga: 48x96 sheet, 100 lbs, $121.60/CWT = $0.026/sq in
-// 16ga: 48x96 sheet, 80 lbs, $118.46/CWT = $0.021/sq in
-// 12ga/18ga: extrapolated from weight ratios at ~$120/CWT
-// 10ga: 5.625 lb/sq ft at $121.60/CWT = $0.047/sq in (same method; confirm on the next RAM quote)
+// Source: Ram Steel sales order 1216470 to CVHS, 11/06/2026: 14ga 48x96 hot rolled,
+// $132.64/CWT material + delivery and CAT spread over 400 lb = $1.39/lb landed.
+// Every gauge uses that landed $/lb x the sheet's weight (lb/sq ft / 144):
+// 10ga 5.625, 11ga 5.0, 12ga 4.375, 14ga 3.125, 16ga 2.5, 18ga 2.0 lb/sq ft.
+// Re-price: change PRICE_PER_LB when Ram quotes again.
+const PRICE_PER_LB = 1.39;
+const perSqIn = (lbPerSqFt) => Math.round(lbPerSqFt * PRICE_PER_LB / 144 * 1000) / 1000;
 const materials = [
-    { id: '10ga_steel', name: '10ga Steel', rate: 0.047, desc: 'Bookends' },
-    { id: '12ga_steel', name: '12ga Steel', rate: 0.036, desc: 'Heavy duty' },
-    { id: '14ga_steel', name: '14ga Steel', rate: 0.026, desc: 'Strong' },
-    { id: '16ga_steel', name: '16ga Steel', rate: 0.021, desc: 'Standard' },
-    { id: '18ga_steel', name: '18ga Steel', rate: 0.016, desc: 'Light' }
+    { id: '10ga_steel', name: '10ga Steel', rate: perSqIn(5.625), desc: 'Bookends' },
+    { id: '11ga_steel', name: '11ga Steel', rate: perSqIn(5.0),   desc: 'Hitch covers' },
+    { id: '12ga_steel', name: '12ga Steel', rate: perSqIn(4.375), desc: 'Heavy duty' },
+    { id: '14ga_steel', name: '14ga Steel', rate: perSqIn(3.125), desc: 'Strong' },
+    { id: '16ga_steel', name: '16ga Steel', rate: perSqIn(2.5),   desc: 'Standard' },
+    { id: '18ga_steel', name: '18ga Steel', rate: perSqIn(2.0),   desc: 'Light' }
 ];
 
 const finishes = [
@@ -34,7 +37,7 @@ const TEACHER_EMAIL = 'andy.mcateer@corvallis.k12.or.us';
 // ===== STATE =====
 let state = {
     sellingPrice: 100,
-    materialIndex: 3,  // 16ga steel default (index in 5-item array)
+    materialIndex: 4,  // 16ga steel default (index in 6-item array)
     finishIndex: 0,    // bare metal default
     length: 12,
     width: 12
@@ -189,6 +192,12 @@ function syncSlidersToInputs() {
 }
 
 // ===== CORE CALCULATION =====
+// One cost formula for the page and the email, so they can never disagree.
+function costFor(area, material, finish) {
+    const subtotal = (area * material.rate) + (area * CONSUMABLE_RATE);
+    return Math.ceil(subtotal * WASTE_FACTOR + SHOP_FEE + finish.cost);
+}
+
 function calculate() {
     const { sellingPrice, materialIndex, finishIndex, length, width } = state;
     const material = materials[materialIndex];
@@ -200,7 +209,7 @@ function calculate() {
     const subtotal = materialCost + consumableCost;
     const wasteCost = subtotal * (WASTE_FACTOR - 1);
     const finishCost = finish.cost;
-    const costToMake = Math.ceil(subtotal * WASTE_FACTOR + SHOP_FEE + finishCost);
+    const costToMake = Math.ceil(subtotal * WASTE_FACTOR + SHOP_FEE + finishCost);  // = costFor()
 
     const profit = sellingPrice - costToMake;
     const studentEarnings = Math.max(profit * 0.5, 0);
@@ -353,8 +362,7 @@ function submitApplication() {
     const material = materials[state.materialIndex];
     const finish = finishes[state.finishIndex];
     const area = state.length * state.width;
-    const subtotal = (area * material.rate) + (area * CONSUMABLE_RATE);
-    const costToMake = Math.ceil(subtotal * WASTE_FACTOR + SHOP_FEE + finish.cost);
+    const costToMake = costFor(area, material, finish);  // same formula as the page
 
     const subject = `[CVHS Plasma Shop] Fabrication Request - ${name}`;
     const body =

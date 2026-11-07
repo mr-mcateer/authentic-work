@@ -28,17 +28,22 @@ Student Share = 50% of profit    School Fund = 50% of profit
 - **Finishes**: Bare $0, Paint +$10, Powder Coat +$15, TIG Weld +$25
 - Negative profit shows a loss warning instead of earnings
 
-**Material rates** (per sq in, from the RAM Steelco quote to CVHS, 10/22/2025):
+**Material rates** come from one landed price per pound: Ram Steel sales order 1216470 to CVHS,
+11/06/2026, 14ga 48x96 hot rolled at $132.64/CWT plus delivery and CAT = **$1.39/lb**.
+Rate per sq in = $1.39 x sheet weight (lb/sq ft) / 144.
 
-| Material | Rate | Basis |
+| Material | lb/sq ft | Rate |
 |---|---|---|
-| 10ga Steel | $0.047 | 5.625 lb/sq ft at $121.60/CWT (same method, confirm on next quote) |
-| 12ga Steel | $0.036 | extrapolated from weight at ~$120/CWT |
-| 14ga Steel | $0.026 | 48x96 sheet, 100 lb, $121.60/CWT |
-| 16ga Steel | $0.021 | 48x96 sheet, 80 lb, $118.46/CWT |
-| 18ga Steel | $0.016 | extrapolated from weight at ~$120/CWT |
+| 10ga Steel | 5.625 | $0.054 |
+| 11ga Steel | 5.0 | $0.048 |
+| 12ga Steel | 4.375 | $0.042 |
+| 14ga Steel | 3.125 | $0.030 |
+| 16ga Steel | 2.5 | $0.024 |
+| 18ga Steel | 2.0 | $0.019 |
 
-When RAM re-quotes, update the `materials` array at the top of `app.js` and this table.
+History: 10/22/2025 quote $121.60/CWT; 2/17/2026 $127.91/CWT; 11/06/2026 $132.64/CWT.
+
+When Ram re-quotes, change `PRICE_PER_LB` at the top of `app.js` and this table.
 
 ## Gallery
 
