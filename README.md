@@ -3,7 +3,7 @@
 Student pricing calculator and project gallery for the Crescent Valley HS metals
 program. A student picks material, finish, and size, sets a selling price, and sees
 what the piece costs to make and what their share of the profit is. Live at
-https://mr-mcateer.github.io/authentic-work/
+https://promptaisolutions.com/authentic-work/
 
 ## Architecture
 
@@ -41,7 +41,11 @@ Rate per sq in = $1.39 x sheet weight (lb/sq ft) / 144.
 | 16ga Steel | 2.5 | $0.024 |
 | 18ga Steel | 2.0 | $0.019 |
 
-History: 10/22/2025 quote $121.60/CWT; 2/17/2026 $127.91/CWT; 11/06/2026 $132.64/CWT.
+14 ga history (Ram sales orders, what was billed): 10/22/2025 $127.60/CWT (the quote said
+$121.60; the order billed more); 2/18/2026 $127.91/CWT; 11/06/2026 $132.64/CWT.
+Other gauges' last Ram price: 11 ga $132.01 (8/2026), 12 ga $114.97 (4/2026), 16 ga $116.57
+(2/2026). All gauges use the newest $1.39/lb on purpose: older, lower prices would undercharge.
+10 ga and 18 ga have never been quoted by Ram; their rates are estimates until a quote arrives.
 
 When Ram re-quotes, change `PRICE_PER_LB` at the top of `app.js` and this table.
 

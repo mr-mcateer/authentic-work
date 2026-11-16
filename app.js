@@ -28,8 +28,8 @@ const CONSUMABLE_RATE = 0.01;
 const WASTE_FACTOR = 1.2;
 // Amortized per-job: delivery + proportional shearing
 const SHOP_FEE = 10.00;
-// Stock sheet dimensions (inches)
-const SHEET_MAX_L = 96;
+// Largest part the plasma table holds (inches): shop stock is 48 x 48
+const SHEET_MAX_L = 48;
 const SHEET_MAX_W = 48;
 
 const TEACHER_EMAIL = 'andy.mcateer@corvallis.k12.or.us';
@@ -65,7 +65,7 @@ function renderMaterialCards() {
     container.innerHTML = materials.map((m, i) => `
         <div class="material-card${i === state.materialIndex ? ' active' : ''}" data-index="${i}" tabindex="0" role="radio" aria-checked="${i === state.materialIndex}">
             <div class="material-card-name">${m.name}</div>
-            <div class="material-card-price">$${m.rate.toFixed(2)}/in²</div>
+            <div class="material-card-price">$${m.rate.toFixed(3)}/in²</div>
             <div class="material-card-desc">${m.desc}</div>
         </div>
     `).join('');
